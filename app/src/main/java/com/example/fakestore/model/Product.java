@@ -9,6 +9,9 @@ public class Product {
     private Float price;
     private String description;
     private String category;
+    @SerializedName("image")
+    private String imageUrl;
+    private Rating rating;
 
     public String getDescription() {
         return description;
@@ -25,10 +28,6 @@ public class Product {
     public void setCategory(String category) {
         this.category = category;
     }
-
-    @SerializedName("image")
-    private String imageUrl;
-    private Rating rating;
 
     public Integer getId() {
         return id;

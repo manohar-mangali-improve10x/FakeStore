@@ -1,7 +1,6 @@
 package com.example.fakestore;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Intent;
@@ -9,21 +8,16 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.fakestore.databinding.ActivityCategoriesBinding;
-import com.example.fakestore.model.Category;
-import com.example.fakestore.network.FakeApi;
-import com.example.fakestore.network.FakeStoreService;
-import com.example.fakestore.network.OnServiceActionListener;
 import com.example.fakestore.products.ProductsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CategoriesActivity extends AppCompatActivity implements OnServiceActionListener {
+public class CategoriesActivity extends BaseActivity implements OnServiceActionListener {
     private ActivityCategoriesBinding binding;
     private List<String> items = new ArrayList<>();
     private CategoryAdapter adapter;
@@ -33,10 +27,9 @@ public class CategoriesActivity extends AppCompatActivity implements OnServiceAc
         super.onCreate(savedInstanceState);
         binding = ActivityCategoriesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Categories");
+        getSupportActionBar().setTitle("Categories");
         getData();
-        setAdapter();
+        setupAdapter();
         connectAdapter();
     }
 
@@ -45,14 +38,12 @@ public class CategoriesActivity extends AppCompatActivity implements OnServiceAc
         binding.categoriesRv.setLayoutManager(new GridLayoutManager(this, 1));
     }
 
-    private void setAdapter() {
+    private void setupAdapter() {
         adapter = new CategoryAdapter(items);
         adapter.setProduct(this);
     }
 
-
     private void getData() {
-        FakeStoreService service = new FakeApi().createFakeApiService();
         Call<List<String>> call = service.getCategory();
         call.enqueue(new Callback<List<String>>() {
             @Override
@@ -70,10 +61,9 @@ public class CategoriesActivity extends AppCompatActivity implements OnServiceAc
     }
 
     @Override
-    public void onProductClicked(String category) {
+    public void onClicked(String category) {
         Intent intent = new Intent(this, ProductsActivity.class);
-        intent.putExtra("category",category);
+        intent.putExtra("category", category);
         startActivity(intent);
-
     }
 }

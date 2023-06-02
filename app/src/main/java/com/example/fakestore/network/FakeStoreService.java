@@ -12,6 +12,7 @@ import retrofit2.http.Path;
 public interface FakeStoreService {
     @GET("products/categories")
     Call<List<String>> getCategory();
+
     @GET("products/category/{categoryName}")
     Call<List<Product>> getProduct(@Path("categoryName")String categoryName);
 

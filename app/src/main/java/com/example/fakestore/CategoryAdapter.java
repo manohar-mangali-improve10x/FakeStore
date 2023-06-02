@@ -8,24 +8,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fakestore.databinding.CategoryItemBinding;
-import com.example.fakestore.model.Category;
-import com.example.fakestore.network.OnServiceActionListener;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
-     private List<String> categories;
-     private OnServiceActionListener listener;
-    public CategoryAdapter(List<String> categories){
+    private List<String> categories;
+    private OnServiceActionListener actionListener;
+
+    public CategoryAdapter(List<String> categories) {
         this.categories = categories;
     }
-        void createCategory(List<String> categories){
+
+    void createCategory(List<String> categories) {
         this.categories = categories;
         notifyDataSetChanged();
-        }
-        void setProduct(OnServiceActionListener listener){
-        this.listener = listener;
-        }
+    }
+
+    void setProduct(OnServiceActionListener listener) {
+        this.actionListener = listener;
+    }
 
     @NonNull
     @Override
@@ -41,7 +42,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
         String category = categories.get(position);
         holder.binding.categoriesTxt.setText(category);
         holder.binding.getRoot().setOnClickListener(v -> {
-            listener.onProductClicked(category);
+            actionListener.onClicked(category);
         });
     }
 

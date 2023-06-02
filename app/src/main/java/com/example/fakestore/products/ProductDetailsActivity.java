@@ -1,10 +1,12 @@
-package com.example.fakestore;
+package com.example.fakestore.products;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.fakestore.BaseActivity;
 import com.example.fakestore.databinding.ActivityProductDetailsBinding;
 import com.example.fakestore.model.Product;
 import com.example.fakestore.network.FakeApi;
@@ -15,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductDetailsActivity extends AppCompatActivity {
+public class ProductDetailsActivity extends BaseActivity {
     private ActivityProductDetailsBinding binding;
 
     @Override
@@ -23,13 +25,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityProductDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().setTitle("Product Details");
         Intent intent = getIntent();
         int productId = intent.getIntExtra("product", 0);
         fetchProductDetails(productId);
     }
 
     private void fetchProductDetails(int productId) {
-        FakeStoreService service = new FakeApi().createFakeApiService();
         Call<Product> call = service.getProductDetails(productId);
         call.enqueue(new Callback<Product>() {
             @Override

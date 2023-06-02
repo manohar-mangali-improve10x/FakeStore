@@ -6,19 +6,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fakestore.CategoryViewHolder;
 import com.example.fakestore.OnProductClickListener;
-import com.example.fakestore.databinding.CategoryItemBinding;
 import com.example.fakestore.databinding.ProductItemBinding;
 import com.example.fakestore.model.Product;
-import com.example.fakestore.network.OnServiceActionListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
     private List<Product> products;
-    private OnProductClickListener listener;
+    private OnProductClickListener actionListener;
 
     public ProductsAdapter(List<Product> products) {
         this.products = products;
@@ -29,8 +26,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
         notifyDataSetChanged();
     }
 
-    void setListener(OnProductClickListener listener) {
-        this.listener = listener;
+    void setActionListener(OnProductClickListener actionListener) {
+        this.actionListener = actionListener;
     }
 
     @NonNull
@@ -51,7 +48,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
         holder.binding.ratingBarRb.setRating(product.getRating().getRate());
         Picasso.get().load(product.getImageUrl()).into(holder.binding.poster);
         holder.binding.getRoot().setOnClickListener(v -> {
-            listener.onProductClick(product.getId());
+            actionListener.onClick(product.getId());
         });
     }
 
