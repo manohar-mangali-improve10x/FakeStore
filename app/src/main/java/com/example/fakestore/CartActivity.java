@@ -26,26 +26,26 @@ public class CartActivity extends BaseActivity {
         binding = ActivityCartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().setTitle("Cart");
-        getData(1);
+//        getData(1);
         setupAdapter();
         connectAdapter();
     }
 
-    private void getData(int cartId) {
-        Call<Cart> call = service.getCartDetails(cartId);
-        call.enqueue(new Callback<Cart>() {
-            @Override
-            public void onResponse(Call<Cart> call, Response<Cart> response) {
-                adapter.createTaskListItem(response.body().getProducts());
-            }
-
-            @Override
-            public void onFailure(Call<Cart> call, Throwable t) {
-
-            }
-        });
-
-    }
+//    private void getData(int cartId) {
+//        Call<Cart> call = service.getCartDetails(cartId);
+//        call.enqueue(new Callback<Cart>() {
+//            @Override
+//            public void onResponse(Call<Cart> call, Response<Cart> response) {
+//                adapter.createTaskListItem(response.body().getProducts());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Cart> call, Throwable t) {
+//
+//            }
+//        });
+//
+//    }
 
 //    private void setUpActionListener() {
 //        adapter.actionListener = new SetupActionListener() {

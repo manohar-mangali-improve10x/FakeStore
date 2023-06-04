@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.fakestore.databinding.ActivityCategoriesBinding;
-import com.example.fakestore.products.ProductsActivity;
+import com.example.fakestore.model.Product;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +18,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CategoriesActivity extends BaseActivity implements OnServiceActionListener {
+public class CategoriesActivity extends BaseActivity {
     private ActivityCategoriesBinding binding;
-    private List<String> items = new ArrayList<>();
+    private List<Product> items = new ArrayList<>();
     private CategoryAdapter adapter;
 
     @Override
@@ -40,30 +41,28 @@ public class CategoriesActivity extends BaseActivity implements OnServiceActionL
 
     private void setupAdapter() {
         adapter = new CategoryAdapter(items);
-        adapter.setProduct(this);
     }
 
     private void getData() {
-        Call<List<String>> call = service.getCategory();
-        call.enqueue(new Callback<List<String>>() {
+        Call<List<Product>> call = service.getCategory();
+        call.enqueue(new Callback<List<Product>>() {
             @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                Toast.makeText(CategoriesActivity.this, "sucess", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 adapter.createCategory(response.body());
+
             }
 
             @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
+            public void onFailure(Call<List<Product>> call, Throwable t) {
 
             }
         });
-
     }
 
-    @Override
-    public void onClicked(String category) {
-        Intent intent = new Intent(this, ProductsActivity.class);
-        intent.putExtra("category", category);
-        startActivity(intent);
-    }
+//    @Override
+////    public void onClicked(String category) {
+//        Intent intent = new Intent(this, ProductsActivity.class);
+//        intent.putExtra("category", category);
+//        startActivity(intent);
+//    }
 }
