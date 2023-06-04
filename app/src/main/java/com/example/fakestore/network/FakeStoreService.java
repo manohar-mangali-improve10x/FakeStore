@@ -1,6 +1,7 @@
 package com.example.fakestore.network;
 
-import com.example.fakestore.model.Category;
+import com.example.fakestore.CartProduct;
+import com.example.fakestore.model.Cart;
 import com.example.fakestore.model.Product;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface FakeStoreService {
 
     @GET("products/{productId}")
     Call<Product> getProductDetails(@Path("productId") int productId);
+
+    @GET("carts/{cartId}")
+    Call<Cart> getCartDetails(@Path("cartId") int cartId);
 }

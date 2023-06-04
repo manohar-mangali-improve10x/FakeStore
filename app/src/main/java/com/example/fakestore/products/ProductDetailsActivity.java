@@ -1,16 +1,11 @@
 package com.example.fakestore.products;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.fakestore.BaseActivity;
 import com.example.fakestore.databinding.ActivityProductDetailsBinding;
 import com.example.fakestore.model.Product;
-import com.example.fakestore.network.FakeApi;
-import com.example.fakestore.network.FakeStoreService;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -52,4 +47,5 @@ public class ProductDetailsActivity extends BaseActivity {
         });
 
     }
+
 }
