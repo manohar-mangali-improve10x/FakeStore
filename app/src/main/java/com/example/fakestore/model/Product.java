@@ -3,10 +3,18 @@ package com.example.fakestore.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Product {
+import java.io.Serializable;
+import java.util.List;
+
+public class Product implements Serializable {
+    private String title;
+    private  String name;
+    private  String description;
+    private List<String> images;
     private Integer id;
-    private String name;
-    private String image;
+    private Float price;
+
+
 
     public Integer getId() {
         return id;
@@ -14,6 +22,31 @@ public class Product {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public String getName() {
@@ -24,11 +57,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getDescription() {
+        return description;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
+

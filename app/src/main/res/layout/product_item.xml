@@ -40,6 +40,7 @@
             style="@android:style/Widget.Material.Light.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/title_txt"
             app:layout_constraintTop_toBottomOf="@+id/title_txt" />
 
@@ -50,6 +51,7 @@
             android:layout_marginLeft="12dp"
             android:text="TextView"
             android:textColor="#000000"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/ratingBar_rb"
             app:layout_constraintStart_toEndOf="@+id/ratingBar_rb"
             app:layout_constraintTop_toTopOf="@+id/ratingBar_rb" />

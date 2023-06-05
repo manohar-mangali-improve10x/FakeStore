@@ -8,4 +8,9 @@
         android:title="Item"
         android:visible="true"
         app:showAsAction="always" />
+    <item
+        android:icon="@drawable/baseline_search_24"
+        android:title="Item"
+        android:visible="true"
+        app:showAsAction="always" />
 </menu>

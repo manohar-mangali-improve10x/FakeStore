@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fakestore.network.FakeApi;
 import com.example.fakestore.network.FakeStoreService;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected FakeStoreService service;
 
@@ -38,5 +38,4 @@ public class BaseActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.cart_menu,menu);
         return super.onCreateOptionsMenu(menu);
-    }
-}
+    }}

@@ -1,14 +1,13 @@
 package com.example.fakestore;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.fakestore.databinding.ActivityCategoriesBinding;
 import com.example.fakestore.model.Product;
+import com.example.fakestore.products.ProductsActivity;
 
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CategoriesActivity extends BaseActivity {
+public class CategoriesActivity extends BaseActivity implements ProductService {
     private ActivityCategoriesBinding binding;
     private List<Product> items = new ArrayList<>();
     private CategoryAdapter adapter;
@@ -34,6 +33,8 @@ public class CategoriesActivity extends BaseActivity {
         connectAdapter();
     }
 
+
+
     private void connectAdapter() {
         binding.categoriesRv.setAdapter(adapter);
         binding.categoriesRv.setLayoutManager(new GridLayoutManager(this, 1));
@@ -41,6 +42,7 @@ public class CategoriesActivity extends BaseActivity {
 
     private void setupAdapter() {
         adapter = new CategoryAdapter(items);
+        adapter.setActionListener(this);
     }
 
     private void getData() {
@@ -59,10 +61,11 @@ public class CategoriesActivity extends BaseActivity {
         });
     }
 
-//    @Override
-////    public void onClicked(String category) {
-//        Intent intent = new Intent(this, ProductsActivity.class);
-//        intent.putExtra("category", category);
-//        startActivity(intent);
-//    }
+    @Override
+    public void onClicked(Product product) {
+        Intent intent = new Intent(this, ProductsActivity.class);
+        intent.putExtra("product", product);
+        startActivity(intent);
+
+    }
 }
